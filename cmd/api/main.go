@@ -1,7 +1,22 @@
 package main
 
-import "fmt"
+import (
+	"oat431/go-fiber-snippets-vol2/internal/config"
+	"oat431/go-fiber-snippets-vol2/internal/routes"
+	"os"
+
+	"github.com/gofiber/fiber/v3"
+	"github.com/gofiber/fiber/v3/log"
+)
 
 func main() {
-	fmt.Println("Hello, World!")
+	config.LoadEnvConfig()
+	app := fiber.New()
+	routes.SetupRoutes(app)
+
+	port := os.Getenv("PORT")
+	err := app.Listen(":" + port)
+	if err != nil {
+		log.Fatal("port :+ " + port + " is already in use")
+	}
 }
