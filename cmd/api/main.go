@@ -11,6 +11,9 @@ import (
 
 func main() {
 	config.LoadEnvConfig()
+	db := config.StartDatabase()
+	defer db.Close()
+
 	app := fiber.New()
 	routes.SetupRoutes(app)
 
