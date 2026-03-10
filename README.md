@@ -21,6 +21,7 @@ Features included in this collection:
     - RabbitMQ
     - Kafka
 - External API Integrations
+- Email Service Integration
 - Unit Testing in each topic
 - Global Validation Middleware
 - Global Logging Middleware
