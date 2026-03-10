@@ -1,6 +1,7 @@
 package main
 
 import (
+	"oat431/go-fiber-snippets-vol2/internal/bootstrap"
 	"oat431/go-fiber-snippets-vol2/internal/config"
 	"oat431/go-fiber-snippets-vol2/internal/routes"
 	"os"
@@ -14,8 +15,10 @@ func main() {
 	db := config.StartDatabase()
 	defer db.Close()
 
+	container := bootstrap.NewAppContainer()
+
 	app := fiber.New()
-	routes.SetupRoutes(app)
+	routes.SetupRoutes(app, container)
 
 	port := os.Getenv("PORT")
 	err := app.Listen(":" + port)
